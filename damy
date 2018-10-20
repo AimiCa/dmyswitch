@@ -1,0 +1,56 @@
+#include "pch.h"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int day, month, year;
+	cin >> day >> month >> year;
+
+	while (day>31){
+		cout << "Not a valid day. Please enter a new one:" << endl;
+		cin >> day;
+	}
+	
+	while (month > 12) {
+		cout << "Not a valid month. Please enter a new one:" << endl;
+		cin >>  month;
+	}
+	if (month == 4 || month == 6 || month == 9 || month == 11) {
+		while (day > 30) {
+			cout << "Not a valid day. Please enter a new one:" << endl;
+			cin >> day;
+		}	
+	}
+	if ((month == 2 && year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+		while (day > 29) {
+			cout << "Not a valid day. Please enter a new one:" << endl;
+			cin >> day;
+		}
+	}
+
+	switch (month) {
+	case(1):
+	case(3):
+	case(5):
+	case(7):
+	case(8):
+	case(10):if (day < 31) { day++; cout << day<<"/"<<month<<"/"<<year << endl; }
+			 else { month++; day = 1; cout << day << "/" << month << "/" << year << endl;} break;
+	case(12):if (day < 31) { day++; cout << day << "/" << month<< "/" << year<< endl; }
+			 else { year++; month = 1; day = 1; cout << day << "/" << month << "/" << year << endl;}break;
+	case(4):
+	case(6):
+	case(9):
+	case(11):if (day < 30) { day++; cout << day << "/" << month << "/" << year << endl; }
+			 else { month++; day = 1; cout << day << "/" << month << "/" << year << endl; } break;
+	default:if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+		if (day == 28)day++;
+		else {
+			day = 1;
+			month++;
+		}
+		 cout << day << "/" << month << "/" << year << endl;
+	} 
+	}
+}
